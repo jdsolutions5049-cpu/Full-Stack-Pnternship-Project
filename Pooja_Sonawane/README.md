@@ -1,1 +1,1 @@
-This folder contains my dainly internship tasks
+This folder contains my daily internship tasks
