@@ -1,74 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Smart Agri </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css">
-
-
+    <meta charset="UTF-8">
+    <title>Smart Agri Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Smart Agri</h1>
-  <div class="subtitle">Supply Chain Platform</div>
+<div class="wrapper">
 
-  <div class="card">
-    <h2 class="center-text">Welcome</h2>
-    <p class="center-text">Sign in to access the platform</p>
+    <div class="card">
+        <div class="card-header">
+            <h2>Smart Agri</h2>
+            <p>Supply Chain Paltform</p>
+        </div>
 
-    <label>I am a</label>
-    <div class="input-group">
-      <i class="fa-solid fa-seedling"></i>
-      <select>
-        <option>Farmer</option>
-        <option>Buyer</option>
-        <option>Distributor</option>
-      </select>
+        <div class="card-body">
+            <center><h3>Welcome </h3>
+            <span class="hint">Sign in to access the platform</span></center>
+            
+            <label>Role</label>
+            <select>
+                <option>Farmer</option>
+                <option>Distributor</option>
+                <option>Manager</option>
+                <option>User</option>   
+            </select>
+
+            <form>
+                <label>Full Name</label>
+                <input type="text" placeholder="Your full name" required>
+
+                <label>Mobile Number</label>
+                <input type="tel" placeholder="10 digit mobile number" required>
+
+                <label>Email Address (Optional)</label>
+                <input type="email" placeholder="email@gmail.com">
+
+                <label>Enter the OTP</label>
+                <input type="text" placeholder="Sent via SMS" required>
+
+                <button>Continue</button>
+            </form>
+
+            <p class="policy">
+                By proceeding, you agree to our Terms of Serivce & Privacy policy.
+            </p>
+        </div>
     </div>
 
-    <div class="tabs">
-      <button class="active">Login</button>
-      <button>Sign Up</button>
-    </div>
-
-    <label>Full Name</label>
-    <div class="input-group">
-      <i class="fa-solid fa-user"></i>
-      <input type="text" placeholder="Enter your name">
-    </div>
-
-    <label>Mobile Number</label>
-    <div class="input-group">
-      <i class="fa-solid fa-phone"></i>
-      <input type="tel" placeholder="Enter mobile number">
-    </div>
-
-    <label>Email (Optional)</label>
-    <div class="input-group">
-      <i class="fa-solid fa-envelope"></i>
-      <input type="email" placeholder="Enter email address">
-    </div>
-
-    <label>OTP</label>
-    <div class="input-group">
-      <i class="fa-solid fa-lock"></i>
-      <input type="password" placeholder="Enter OTP">
-    </div>
-
-    <button class="btn">Create Account</button>
-
-    <div class="footer-text">
-      By continuing, you agree to our
-      <a href="#">Terms of Service</a> and
-      <a href="#">Privacy Policy</a>
-    </div>
-  </div>
+</div>
 
 </body>
 </html>
