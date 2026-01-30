@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<head>
+    <style>
+        
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:linear-gradient(180deg,#243b55,#1abc9c);
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.sidebar a span{
+    margin-right:10px;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+.main{
+    margin-left:230px;
+    padding:25px;
+}
+
+.overview{
+    background:linear-gradient(135deg,#1abc9c,#243b55);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+}
+
+.overview h1{
+    margin:0;
+    font-size:26px;
+}
+
+.overview p{
+    margin-top:8px;
+    font-size:14px;
+    opacity:0.9;
+}
+ 
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #1a3c40;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th {
+    background: linear-gradient(90deg, #1dbf9f, #1a6b73);
+    color: #ffffff;
+    text-align: left;
+    padding: 14px;
+    font-weight: 600;
+}
+
+tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+}
+
+tbody tr:hover {
+    background-color: #f1f9f8;
+}
+
+
+.status-available {
+    color: #1dbf9f;
+    font-weight: 600;
+}
+
+.status-out {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+    </style>
+</head>
+<body>
+    
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard.html"><span>🏠</span>Admin Dashboard</a>
+    <a href="farmer.html"><span>👨‍🌾</span>Farmer Management</a>
+    <a href="buyer.html"><span>🛒</span>Buyer Management</a>
+    <a href="inventry.html"><span>📦</span>Inventory Control</a>
+    <a href="pricing.html"><span>💰</span>Pricing & Prediction</a>
+    <a href="weather.html"><span>☁️</span>Weather & Alerts</a>
+    <a href="reports.html"><span>📊</span>Reports & Analytics</a>
+    <a href="users.html"><span>👤</span>User Management</a>
+    <a href="logs.html"><span>🧾</span>Logs & Audit Trail</a>
+    <a onclick="logout()" href="admin.html"><span>🚪</span>Logout</a>
+</div>
+
+</div>
+
+<div class="main">
+
+    <div class="overview">
+        <h1>Inventory Control</h1>
+        <p>Monitor and manage product stock, categories, quantities, farmer details, and availability status in one place.</p>
+    </div>
+     
+    <div class="card">
+            <h2>Product Inventory</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Farmer Name</th>
+                        <th>Availability Status</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable">
+                    
+                </tbody>
+            </table>
+        </div>
+
+    
+
+</div>
+
+
+
+<div class="card" style="max-width:360px; margin:30px auto;">
+    <canvas id="inventoryPieChart"></canvas>
+</div>
+
+
+<script src="../js/inventory.js"></script>
+    
+</body>
+</html>

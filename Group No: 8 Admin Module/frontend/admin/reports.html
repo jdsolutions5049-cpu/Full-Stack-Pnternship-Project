@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports & Analytics</title>
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.container{
+    display:flex;
+    height:100vh;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:linear-gradient(180deg,#243b55,#1abc9c);
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.sidebar a span{
+    margin-right:10px;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+
+.main{
+    margin-left:230px;
+    padding:25px;
+    overflow-y:auto;
+    flex:1;
+}
+
+
+.overview{
+    background:linear-gradient(135deg,#1abc9c,#243b55);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+}
+
+.overview h1{
+    margin:0;
+    font-size:26px;
+}
+
+.overview p{
+    margin-top:8px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+
+.top-section{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.line-chart{
+    flex:2;
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+
+.stats{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.stat-box{
+    background:#fff;
+    padding:15px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-box.green{ border-left:5px solid #2ecc71; }
+.stat-box.orange{ border-left:5px solid #e67e22; }
+.stat-box.blue{ border-left:5px solid #3498db; }
+
+
+.bottom-section{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.bar-chart{
+    flex:1;
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    
+   <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard.html"><span>🏠</span>Admin Dashboard</a>
+    <a href="farmer.html"><span>👨‍🌾</span>Farmer Management</a>
+    <a href="buyer.html"><span>🛒</span>Buyer Management</a>
+    <a href="inventry.html"><span>📦</span>Inventory Control</a>
+    <a href="pricing.html"><span>💰</span>Pricing & Prediction</a>
+    <a href="weather.html"><span>☁️</span>Weather & Alerts</a>
+    <a href="reports.html"><span>📊</span>Reports & Analytics</a>
+    <a href="users.html"><span>👤</span>User Management</a>
+    <a href="logs.html"><span>🧾</span>Logs & Audit Trail</a>
+    <a onclick="logout()" href="admin.html"><span>🚪</span>Logout</a>
+</div>
+
+
+    
+    <div class="main">
+        
+        <div class="overview">
+            <h1>Reports & Analytics</h1>
+            <p>View system activity, monthly reports and user growth</p>
+        </div>
+
+        
+        <div class="top-section">
+            <div class="line-chart">
+                <h4>System Activity</h4>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box green">
+                    <span>Active Users</span>
+                    <h3>1,240</h3>
+                </div>
+                <div class="stat-box orange">
+                    <span>Warnings</span>
+                    <h3>18</h3>
+                </div>
+                <div class="stat-box blue">
+                    <span>Reports</span>
+                    <h3>320</h3>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="bottom-section">
+            <div class="bar-chart">
+                <h4>Monthly Reports</h4>
+                <canvas id="barChart1"></canvas>
+            </div>
+            <div class="bar-chart">
+                <h4>User Growth</h4>
+                <canvas id="barChart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
