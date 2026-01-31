@@ -1,0 +1,1 @@
+module.exports=require('mongoose').model('AuditLog',new(require('mongoose').Schema)({actorRole:String,action:String,entity:String,timestamp:{type:Date,default:Date.now}}));

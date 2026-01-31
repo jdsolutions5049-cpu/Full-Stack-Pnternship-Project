@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<head>
+    <style>
+    *{
+        box-sizing: border-box;
+    } 
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:linear-gradient(180deg,#243b55,#1abc9c);
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.sidebar a span{
+    margin-right:10px;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+.main{
+    margin-left:230px;
+    padding:25px;
+}
+
+.overview{
+    background:linear-gradient(135deg,#1abc9c,#243b55);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+}
+
+.overview h1{
+    margin:0;
+    font-size:26px;
+}
+
+.overview p{
+    margin-top:8px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #1a3c40;
+}
+
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+
+.weather-card {
+    background: linear-gradient(135deg, #1dbf9f, #1a6b73);
+    padding: 25px;
+    padding-top: 0px;
+    border-radius: 14px;
+    text-align: center;
+    margin-bottom: 0px;
+    font-weight: 700;
+    position: relative;
+}
+.weather-card-heading {
+        color: #ffffff !important;
+}
+.weather-cities {
+    position:relative;
+    background: linear-gradient(135deg, #1dbf9f, #1a6b73);
+    text-align: left;
+    padding: 20px;
+    color: #ffffff;
+    top: 0px;
+    border-radius: 14px;
+    left:0%;
+    border: 2px solid rgb(250, 245, 245);
+    width:100%;
+}
+.alert-Button {
+    background: #e7f5ff;
+    color: #0c5460;
+    border: none;
+    padding: 7px 15px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(26,188,156,0.35);
+    margin-bottom: 10px;
+}
+.alert-Button-Parent {
+    display: flex;
+    justify-content: end;
+}
+
+
+.alert-history {
+    background: #fff3cd;
+    color: #856404;
+    padding: 15px 18px;
+    border-radius: 10px;    
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard.html"><span>🏠</span>Admin Dashboard</a>
+    <a href="farmer.html"><span>👨‍🌾</span>Farmer Management</a>
+    <a href="buyer.html"><span>🛒</span>Buyer Management</a>
+    <a href="inventry.html"><span>📦</span>Inventory Control</a>
+    <a href="pricing.html"><span>💰</span>Pricing & Prediction</a>
+    <a href="weather.html"><span>☁️</span>Weather & Alerts</a>
+    <a href="reports.html"><span>📊</span>Reports & Analytics</a>
+    <a href="users.html"><span>👤</span>User Management</a>
+    <a href="logs.html"><span>🧾</span>Logs & Audit Trail</a>
+    <a onclick="logout()" href="admin.html"><span>🚪</span>Logout</a>
+</div>
+
+</div>
+
+<div class="main">
+
+    <div class="overview">
+        <h1>Weather & Alerts</h1>
+        <p>View current weather conditions and receive important alerts and notifications to help farmers plan timely actions.</p>
+    </div>
+     <div class="card">
+        <h2>Current Weather</h2>
+
+        <div class="weather-grid">
+            <div class="weather-card" data-type="Rainfall">
+                <h2 class="weather-card-heading">Rainfall</h2>
+                <div class="weather-cities">
+                    <h3>Pune : 20mm</h3>
+                    <h3>Nashik : 15mm</h3>
+                    <h3>Sangamner : 10mm</h3>
+                    <div class="alert-Button-Parent">
+                        <button class="alert-Button">Trigger Alert</button>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-card" data-type="Temperature">
+                <h2 class="weather-card-heading">Temperature</h2>
+                <div class="weather-cities">
+                    <h3>Pune : 30°C</h3>
+                    <h3>Nashik : 28°C</h3>
+                    <h3>Sangamner : 32°C</h3>
+                    <div class="alert-Button-Parent">
+                        <button class="alert-Button">Trigger Alert</button>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-card" data-type="Humidity">
+                <h2 class="weather-card-heading">Humidity</h2>
+                <div class="weather-cities">
+                    <h3>Pune : 70%</h3>
+                    <h3>Nashik : 65%</h3>
+                    <h3>Sangamner : 75%</h3>
+                    <div class="alert-Button-Parent">
+                        <button class="alert-Button">Trigger Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card">
+        <h2>Farmer Alerts History</h2>
+        <div id="alert-history">
+            <div id="empty-history" class="alert-history empty">
+                No alerts have been sent yet. Trigger a weather alert to notify farmers.
+            </div>
+        </div>
+    </div>
+
+
+     
+</div>
+<script>
+const token = localStorage.getItem("adminToken");
+
+document.querySelectorAll(".alert-Button").forEach(button => {
+  button.addEventListener("click", async () => {
+
+    const card = button.closest(".weather-card");
+    const type = card.querySelector(".weather-card-heading").innerText;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/alerts/trigger", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ type })
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      loadAlertHistory();
+      alert("Alert sent to farmers!");
+
+    } catch (err) {
+      alert("Alert sending failed");
+      console.error(err);
+    }
+  });
+});
+
+/* LOAD ALERT HISTORY */
+async function loadAlertHistory() {
+  const historyDiv = document.getElementById("alert-history");
+  historyDiv.innerHTML = "";
+
+  const res = await fetch("http://localhost:5000/api/alerts/history", {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  const data = await res.json();
+
+  if (data.length === 0) {
+    historyDiv.innerHTML = `<div class="alert-history empty">No alerts yet</div>`;
+    return;
+  }
+
+  data.forEach(alert => {
+    const div = document.createElement("div");
+    div.className = "alert-history";
+    div.innerHTML = `
+      <span>⚠ ${alert.message}</span>
+      <span>${new Date(alert.createdAt).toLocaleString()}</span>
+    `;
+    historyDiv.appendChild(div);
+  });
+}
+
+loadAlertHistory();
+</script>
+
+</body>
+</html>

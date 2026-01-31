@@ -1,0 +1,1 @@
+module.exports=require('mongoose').model('PricePrediction',new(require('mongoose').Schema)({crop:String,period:String,predictedPrice:Number}));

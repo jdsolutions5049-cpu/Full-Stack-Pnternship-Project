@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:linear-gradient(180deg,#243b55,#1abc9c);
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.sidebar a span{
+    margin-right:10px;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+.main{
+    margin-left:230px;
+    padding:25px;
+}
+
+.overview{
+    background:linear-gradient(135deg,#1abc9c,#243b55);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+}
+
+.overview h1{
+    margin:0;
+    font-size:26px;
+}
+
+.overview p{
+    margin-top:8px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #1a3c40;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th {
+    background: linear-gradient(90deg, #1dbf9f, #1a6b73);
+    color: #ffffff;
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+}
+
+tbody tr:hover {
+    background-color: #f1f9f8;
+}
+
+
+.suggested {
+    color: #1dbf9f;
+    font-weight: 600;
+}
+
+
+.graph {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bar {
+    width: 50px;
+    background: linear-gradient(180deg, #1dbf9f, #1a6b73);
+    border-radius: 8px 8px 0 0;
+    position: relative;
+}
+
+.bar span {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1dbf9f;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #148f7a;
+}
+
+td button {
+    margin: 0 5px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+
+}.price-lock-wrapper {
+    position: relative;
+}
+
+
+.price-lock {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(3px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lock-box {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.lock-box input {
+    padding: 8px;
+    width: 180px;
+    margin: 10px 0;
+}
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+#activityTable tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+
+
+ </style>
+</head>
+<body>
+    
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard.html"><span>🏠</span>Admin Dashboard</a>
+    <a href="farmer.html"><span>👨‍🌾</span>Farmer Management</a>
+    <a href="buyer.html"><span>🛒</span>Buyer Management</a>
+    <a href="inventry.html"><span>📦</span>Inventory Control</a>
+    <a href="pricing.html"><span>💰</span>Pricing & Prediction</a>
+    <a href="weather.html"><span>☁️</span>Weather & Alerts</a>
+    <a href="reports.html"><span>📊</span>Reports & Analytics</a>
+    <a href="users.html"><span>👤</span>User Management</a>
+    <a href="logs.html"><span>🧾</span>Logs & Audit Trail</a>
+    <a onclick="logout()" href="admin.html"><span>🚪</span>Logout</a>
+</div>
+
+
+<div class="main">
+
+    <div class="overview">
+        <h1>Pricing & Prediction</h1>
+        <p>Analyze product-wise prices, view suggested rates, and track market trends to support better pricing decisions.</p>
+    </div>
+
+
+    <h2>Manage Crop Prices</h2>
+
+    <table>
+  <thead>
+    <tr>
+      <th>Crop</th>
+      <th>Price (₹/kg)</th>
+    </tr>
+  </thead>
+  <tbody id="pricingTable"></tbody>
+</table>
+
+
+    <div class="actions">
+        <button onclick="addProduct()">➕ Add Product</button>
+        <button onclick="deleteProducts()">🗑️ Delete</button>
+    </div>
+
+
+<div class="card">
+    <h2>Admin Activity Log</h2>
+
+    <table id="activityTable">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Admin</th>
+                <th>Action</th>
+                <th>Date & Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- details -->
+        </tbody>
+    </table>
+</div>
+
+
+    <div class="card">
+        <h2>Price Trend</h2>
+
+        <div class="graph">
+            <div class="bar" style="height: 120px;"><span>Jan</span></div>
+            <div class="bar" style="height: 150px;"><span>Feb</span></div>
+            <div class="bar" style="height: 100px;"><span>Mar</span></div>
+            <div class="bar" style="height: 180px;"><span>Apr</span></div>
+            <div class="bar" style="height: 160px;"><span>May</span></div>
+        </div>
+     
+</div>
+
+    <script src="../js/pricing.js"></script>
+    
+</body>
+</html>

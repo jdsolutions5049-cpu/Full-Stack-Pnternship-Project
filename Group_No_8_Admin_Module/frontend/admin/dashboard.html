@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+  if (!localStorage.getItem('adminToken')) {
+    window.location.href = 'admin.html';
+  }
+</script>
+
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:linear-gradient(180deg,#243b55,#1abc9c);
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    padding-top:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    padding:13px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.sidebar a span{
+    margin-right:10px;
+    font-size:16px;
+}
+
+.sidebar a:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+.main{
+    margin-left:230px;
+    padding:25px;
+}
+
+.overview{
+    background:linear-gradient(135deg,#1abc9c,#243b55);
+    color:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    margin-bottom:30px;
+}
+
+.overview h1{
+    margin:0;
+    font-size:26px;
+}
+
+.overview p{
+    margin-top:8px;
+    font-size:14px;
+    opacity:0.9;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.12);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    background:#e8f8f5;
+}
+
+.card .icon{
+    font-size:30px;
+}
+
+.card h3{
+    margin:10px 0 6px;
+    font-size:14px;
+    color:#555;
+}
+
+.card p{
+    font-size:26px;
+    color:#243b55;
+    font-weight:bold;
+}
+
+.section{
+    margin-bottom:30px;
+}
+
+.section h2{
+    color:#243b55;
+    font-family: Arial, sans-serif;
+    margin-bottom:15px;
+}
+
+.section table{
+    width:100%;
+    border-collapse:collapse;
+    border-radius:14px;
+    overflow:hidden;
+    font-family: Arial, sans-serif; 
+    box-shadow:0 8px 18px rgba(0,0,0,0.12); 
+    background:white;
+}
+
+.section th, .section td{
+    padding:14px;
+    text-align:left;
+    color:#243b55; 
+}
+
+.section th{
+    background:linear-gradient(135deg,#1abc9c,#243b55); 
+    color:white;
+    font-size:14px;
+}
+
+.section tr{
+    transition:0.3s;
+}
+
+.section tr:hover{
+    background:#e8f8f5; 
+}
+
+@media(max-width:768px){
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .sidebar a{
+        width:50%;
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard.html"><span>🏠</span>Admin Dashboard</a>
+    <a href="farmer.html"><span>👨‍🌾</span>Farmer Management</a>
+    <a href="buyer.html"><span>🛒</span>Buyer Management</a>
+    <a href="inventry.html"><span>📦</span>Inventory Control</a>
+    <a href="pricing.html"><span>💰</span>Pricing & Prediction</a>
+    <a href="weather.html"><span>☁️</span>Weather & Alerts</a>
+    <a href="reports.html"><span>📊</span>Reports & Analytics</a>
+    <a href="users.html"><span>👤</span>User Management</a>
+    <a href="logs.html"><span>🧾</span>Logs & Audit Trail</a>
+    <a onclick="logout()" href="admin.html"><span>🚪</span>Logout</a>
+</div>
+
+</div>
+
+<div class="main">
+
+    <div class="overview">
+        <h1>Dashboard Overview</h1>
+        <p>Quick summary of platform activity and system statistics</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="icon">👨‍🌾</div>
+            <h3>Total Farmers</h3>
+            <p id="farmerCount">0</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🛒</div>
+            <h3>Total Buyers</h3>
+            <p id="buyerCount">0</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📦</div>
+            <h3>Total Sell Requests</h3>
+            <p id="sellRequestCount">0</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📅</div>
+            <h3>Total Orders</h3>
+            <p id="orderCount">0</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Recent Activity</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Status</th>
+            </tr>
+            <tr onclick="viewActivity('Farmer A')">
+                <td>16-Jan-2026</td>
+                <td>Farmer A</td>
+                <td>Added Product</td>
+                <td>Success</td>
+            </tr>
+            <tr onclick="viewActivity('Buyer B')">
+                <td>16-Jan-2026</td>
+                <td>Buyer B</td>
+                <td>Placed Order</td>
+                <td>Pending</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+    <script src="../js/dashboard.js"></script>
+
+
+</body>
+</html>

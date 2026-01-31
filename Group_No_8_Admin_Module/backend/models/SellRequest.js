@@ -1,0 +1,1 @@
+module.exports=require('mongoose').model('SellRequest',new(require('mongoose').Schema)({farmerId:String,crop:String,quantity:Number,status:String}));

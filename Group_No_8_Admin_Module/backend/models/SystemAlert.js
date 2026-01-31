@@ -1,0 +1,1 @@
+module.exports=require('mongoose').model('SystemAlert',new(require('mongoose').Schema)({message:String}));
