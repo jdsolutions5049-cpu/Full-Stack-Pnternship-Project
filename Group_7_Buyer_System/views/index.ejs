@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/images/image.png" alt="JD Mart Logo" height="40" style="border-radius: 8px;"/>
+      <span class="ms-2 fw-bold">JD Mart</span>
+    </a>
+
+    <!-- LOCATION -->
+    <div class="ms-auto me-4 d-flex align-items-center">
+      <i class="fa-solid fa-location-dot me-1" style="color: #16a34a;"></i>
+      <span id="locationText" style="font-size: 15px;">Getting location...</span>
+    </div>
+
+    <!-- REST OF NAVBAR -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-search ms-3">
+        <input type="text" id="productSearch" placeholder="Search for crops, grains, vegetables..." class="form-control" />
+      </div>
+
+      <div class="navbar-icons ms-3">
+        <div class="dot">
+          <i class="fa-regular fa-bell"></i>
+        </div>
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <!-- USER DROPDOWN -->
+        <div class="navbar-user" id="userDropdown">
+          <div class="avatar">
+            <%= user?.fullName?.charAt(0).toUpperCase() || "U" %>
+          </div>
+          <span><%= user?.fullName?.split(" ")[0] || "Guest" %></span>
+          <i class="fa-solid fa-chevron-down"></i>
+
+          <div class="jd-user-menu">
+            <div class="jd-user-info">
+              <strong><%= user?.fullName || "Guest User" %></strong>
+              <small><%= user?.email || "Not logged in" %></small>
+            </div>
+            <a href="/profile"><i class="fa-regular fa-user"></i> Profile</a>
+            <a href="/orders"><i class="fa-solid fa-box"></i> Orders</a>
+            <div class="jd-divider"></div>
+            <a href="/logout" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+    
+<!-- Premium Buyer Section -->
+<div class="premium-section container-fluid my-4 p-4 shadow-sm">
+  <div class="row">
+    
+    <!-- Left + Stats -->
+    <div class="col-12">
+
+      <!-- Text Info -->
+      <span class="fw-bold mb-2 d-block">
+        <i class="fa-regular fa-star"></i> Premium Buyer
+      </span>
+
+      <h3 class="mb-1">Fresh Crops, Direct from Farms</h3>
+      <p>Browse our selection of quality-verified crops at competitive prices. Fast delivery to your doorstep.</p>
+
+      <!-- Stats Below -->
+      <div class="d-flex flex-wrap gap-4 mt-3">
+
+        <div class="d-flex align-items-center gap-2 premium-stat">
+          <i class="fa-solid fa-box"></i>
+          <span>7 Products Available</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 premium-stat">
+          <i class="fa-regular fa-truck"></i>
+          <span>1-4 Days Delivery</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- DASHBOARD STATISTICS -->
+
+  <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 gx-4 px-4">
+
+    <!-- Categories -->
+    <div class="col-md-3 col-sm-6">
+      <div class="stat-card d-flex align-items-center p-3">
+        <div class="stat-icon me-3">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div>
+          <h4 class="mb-1"><%= dashboardStats.totalCategories?.[0]?.count || 0 %></h4>
+          <p class="mb-0 text-muted">Categories</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products In Stock -->
+    <div class="col-md-3 col-sm-6">
+      <div class="stat-card d-flex align-items-center p-3">
+        <div class="stat-icon me-3" style="background-color: rgba(245,158,11,0.1);">
+          <i class="fa-solid fa-cube" style="color: #f59e0b;"></i>
+        </div>
+        <div>
+          <h4 class="mb-1"><%= dashboardStats.inStock?.[0]?.count || 0 %></h4>
+          <p class="mb-0 text-muted">Products In Stock</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Below Market -->
+    <div class="col-md-3 col-sm-6">
+      <div class="stat-card d-flex align-items-center p-3">
+        <div class="stat-icon me-3" style="background-color: rgba(239,68,68,0.1);">
+          <i class="fa-solid fa-arrow-trend-down" style="color: #ef4444;"></i>
+        </div>
+        <div>
+          <h4 class="mb-1"><%= dashboardStats.belowMarket?.[0]?.count || 0 %></h4>
+          <p class="mb-0 text-muted">Below Market</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grade A Products -->
+    <div class="col-md-3 col-sm-6">
+      <div class="stat-card d-flex align-items-center p-3">
+        <div class="stat-icon me-3" style="background-color: rgba(59,130,246,0.1);">
+          <i class="fa-regular fa-star" style="color: #3b82f6;"></i>
+        </div>
+        <div>
+          <h4 class="mb-1"><%= dashboardStats.gradeA?.[0]?.count || 0 %></h4>
+          <p class="mb-0 text-muted">Grade A Products</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+<!-- Category Filters -->
+<div class="category-filters mb-4 mt-4 m-4">
+  <button class="cat-btn active" data-category="all">All</button>
+  <button class="cat-btn" data-category="grains">Grains</button>
+  <button class="cat-btn" data-category="oilseeds">Oilseeds</button>
+  <button class="cat-btn" data-category="pulses">Pulses</button>
+  <button class="cat-btn" data-category="pulses">Spices</button>
+</div>
+
+    <!-- Product Cards -->
+ <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 gx-4 px-4 mb-6">
+
+
+    <% for(let product of allProducts){ %>
+    <a href="/products/<%= product._id %>" class="product-link" data-category="<%= product.category.toLowerCase() %>">
+
+  <div class="jd-card">
+
+    <!-- IMAGE -->
+    <div class="jd-image" style="background-image:url('<%= product.images %>')">
+
+      <!-- BADGES -->
+      <div class="jd-badges">
+        <span class="jd-grade">
+          <i class="fa-regular fa-star"></i> Grade <%= product.grade %>
+        </span>
+
+        <span class="jd-market">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+          <%= product.belowMarketPercent %>% below market
+        </span>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="jd-body">
+
+      <div class="jd-meta">
+        <span class="jd-category"><%= product.category.toUpperCase() %></span>
+        <span class="jd-demand <%= product.demandLevel.toLowerCase() %>">
+          <%= product.demandLevel %> Demand
+        </span>
+      </div>
+
+      <h5 class="jd-product-name"><%= product.name %></h5>
+
+      <div class="jd-price">
+        <span class="jd-current">
+          ₹<%= product.pricePerQuintal.toLocaleString("en-IN") %>
+        </span>
+        <span class="jd-unit">/quintal</span>
+        <span class="jd-old">
+          ₹<%= product.oldPrice.toLocaleString("en-IN") %>
+        </span>
+      </div>
+
+      <hr style="color: #545654; margin-bottom: 0px;">
+      <div class="jd-footer">
+        <span>
+          <i class="fa-solid fa-cart-shopping"></i>
+          <%= product.available %> quintals available
+        </span>
+        <span>
+          <i class="fa-regular fa-clock"></i>
+          <%= product.deliveryTime.minDays %>-<%= product.deliveryTime.maxDays %> days
+        </span>
+      </div>
+
+    </div>
+  </div>
+</a>
+<% } %>
+    </div>
+
+
+  
+<!-- FOOTER -->
+<footer class="jd-footer-section mt-5">
+  <div class="container-fluid px-5 mt-3">
+    <div class="row gy-4">
+
+      <!-- BRAND -->
+      <div class="col-lg-4 col-md-6">
+        <div class="d-flex align-items-center mb-3">
+          <img src="/images/image.png" height="40" style="border-radius:8px;">
+          <h5 class="ms-2 mb-0">JD Mart</h5>
+        </div>
+        <p class="text-muted">
+          JD Mart connects farmers directly with buyers, offering fresh crops, transparent pricing, and fast delivery across regions.
+        </p>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-title">Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">My Profile</a></li>
+          <li><a href="/orders">My Orders</a></li>
+          <li><a href="/listings">Browse Products</a></li>
+        </ul>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-title">Support</h6>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-title">Contact Us</h6>
+        <p class="mb-1"><i class="fa-solid fa-location-dot"></i> India</p>
+        <p class="mb-1"><i class="fa-solid fa-envelope"></i> support@jdmart.com</p>
+        <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+
+        <div class="footer-social mt-3">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="mt-4">
+
+    <div class="text-center pb-3">
+      <small>
+        © <%= new Date().getFullYear() %> JD Mart. All rights reserved.
+      </small>
+    </div>
+  </div>
+</footer>
+
+
+
+
+   <script src="/js/script.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
